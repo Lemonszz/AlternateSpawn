@@ -1,0 +1,16 @@
+[
+{
+  "modid": "alternatespawn",
+  "name": "Alternate Spawn",
+  "description": "Alternate Hostile Mob Spawning",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Lemons"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
