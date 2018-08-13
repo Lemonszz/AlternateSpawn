@@ -40,7 +40,7 @@ public class LoginMessager
 			Style style = new Style();
 			style.setColor(TextFormatting.GRAY);
 			style.setItalic(true);
-			style.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://github.com/Lemonszz/AlternateSpawn/wiki/Alternate-Spawn"));
+			style.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://minecraft.curseforge.com/projects/ass"));
 			txt.setStyle(style);
 
 			event.player.sendStatusMessage(txt, false);
