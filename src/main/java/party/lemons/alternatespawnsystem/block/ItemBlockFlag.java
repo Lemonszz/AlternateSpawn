@@ -19,7 +19,6 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
 import party.lemons.alternatespawnsystem.block.tileentity.TileEntityFlag;
-import party.lemons.alternatespawnsystem.block.tileentity.render.TileEntityFlagStackRenderer;
 import party.lemons.alternatespawnsystem.spawning.FlagType;
 
 /**
@@ -33,7 +32,6 @@ public class ItemBlockFlag extends ItemBlock
 
 		this.maxStackSize = 16;
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
-		this.setTileEntityItemStackRenderer(new TileEntityFlagStackRenderer());
 	}
 
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)

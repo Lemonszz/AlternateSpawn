@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
+import party.lemons.alternatespawnsystem.block.tileentity.render.TileEntityFlagStackRenderer;
 
 /**
  * Created by Sam on 13/08/2018.
@@ -36,6 +37,8 @@ public class AlternateSpawnerModelRegistry
 					0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
 
 			setInvisibleModel(block, BlockFlag.ROTATION);
+
+		Item.getItemFromBlock(block).setTileEntityItemStackRenderer(new TileEntityFlagStackRenderer());
 	}
 
 	public static void setInvisibleModel(Block block, IProperty<?>... ignores)
