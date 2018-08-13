@@ -67,6 +67,7 @@ public class BlockFlag extends Block
 		if(!(placer instanceof EntityPlayer))
 			return;
 
+		System.out.println("Debug");
 		if(!world.isRemote && state.getBlock() instanceof BlockFlag)
 		{
 			EntityPlayer player = (EntityPlayer) placer;

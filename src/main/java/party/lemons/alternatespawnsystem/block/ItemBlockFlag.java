@@ -55,17 +55,21 @@ public class ItemBlockFlag extends ItemBlock
 				{
 					pos = flag ? pos.down() : pos;
 
+					IBlockState placeState = block.getDefaultState();
+
 					if (facing == EnumFacing.UP)
 					{
 						//ground
 						int i = MathHelper.floor((double)((player.rotationYaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
-						worldIn.setBlockState(pos, block.getDefaultState().withProperty(BlockFlag.ROTATION, Integer.valueOf(i)), 3);
+						placeState = block.getDefaultState().withProperty(BlockFlag.ROTATION, Integer.valueOf(i));
 					}
 					else
 					{
 						//Wall
-						worldIn.setBlockState(pos, BlockFlag.getWallInstance(block).getDefaultState().withProperty(BlockWallSign.FACING, facing), 3);
+						placeState = BlockFlag.getWallInstance(block).getDefaultState().withProperty(BlockWallSign.FACING, facing);
 					}
+					worldIn.setBlockState(pos, placeState);
+					placeState.getBlock().onBlockPlacedBy(worldIn, pos, placeState, player, itemstack);
 
 					if (player instanceof EntityPlayerMP)
 					{

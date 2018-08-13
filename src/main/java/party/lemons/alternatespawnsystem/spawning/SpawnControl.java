@@ -22,7 +22,7 @@ public class SpawnControl
 	@SubscribeEvent
 	public static void checkSpawn(LivingSpawnEvent.CheckSpawn event)
 	{
-		if(!event.getWorld().isRemote && event.getEntity() instanceof EntityMob)	//If the entity is an enemy
+		if(!event.isSpawner() && !event.getWorld().isRemote && event.getEntity() instanceof EntityMob)	//If the entity is an enemy
 		{
 			EntityMob e = (EntityMob) event.getEntity();
 
