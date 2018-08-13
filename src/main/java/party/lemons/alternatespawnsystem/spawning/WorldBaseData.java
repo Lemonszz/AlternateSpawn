@@ -11,6 +11,8 @@ import net.minecraftforge.common.util.Constants;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
 import party.lemons.alternatespawnsystem.config.AlternateSpawnConfig;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -109,7 +111,42 @@ public class WorldBaseData extends WorldSavedData
 		return true;
 	}
 
-	public static WorldBaseData get(World world)
+	/***
+	 * Checks if there is an active base at a location
+	 * @param pos
+	 * @return true if active base at location
+	 */
+	public boolean hasBaseAt(BlockPos pos)
+	{
+		for(BaseArea area : areas)
+		{
+			if(area.getPosition().equals(pos))
+				return true;
+		}
+
+		return false;
+	}
+
+	/***
+	 * Finds first base registered to a player
+	 * Used to deactivate oldest base
+	 * @param playerIn
+	 * @return
+	 */
+	public @Nullable BlockPos findFirst(EntityPlayer playerIn)
+	{
+		for(BaseArea area : areas)
+		{
+			if(area.getOwner().equals(playerIn.getUniqueID()))
+			{
+				return area.getPosition();
+			}
+		}
+
+		return null;
+	}
+
+	public static @Nonnull WorldBaseData get(World world)
 	{
 		MapStorage storage = world.getPerWorldStorage();
 		WorldBaseData instance = (WorldBaseData)storage.getOrLoadData(WorldBaseData.class, NAME);
@@ -151,29 +188,5 @@ public class WorldBaseData extends WorldSavedData
 
 		compound.setTag("areas", tagList);
 		return compound;
-	}
-
-	public boolean hasBaseAt(BlockPos pos)
-	{
-		for(BaseArea area : areas)
-		{
-			if(area.getPosition().equals(pos))
-				return true;
-		}
-
-		return false;
-	}
-
-	public BlockPos findFirst(EntityPlayer playerIn)
-	{
-		for(BaseArea area : areas)
-		{
-			if(area.getOwner().equals(playerIn.getUniqueID()))
-			{
-				return area.getPosition();
-			}
-		}
-
-		return null;
 	}
 }

@@ -12,7 +12,7 @@ import party.lemons.alternatespawnsystem.block.tileentity.TileEntityFlag;
  */
 public class TileEntityFlagStackRenderer extends TileEntityItemStackRenderer
 {
-	private TileEntityFlag flag = new TileEntityFlag(true);
+	private TileEntityFlag flag = new TileEntityFlag();
 
 	public void renderByItem(ItemStack stack)
 	{

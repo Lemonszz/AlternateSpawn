@@ -18,11 +18,15 @@ import party.lemons.alternatespawnsystem.spawning.FlagType;
  */
 public class BlockFlagWall extends BlockFlag
 {
+	protected static final AxisAlignedBB NORTH_AABB = new AxisAlignedBB(0.375D, 0.375D, 1 - (12F / 16F), 0.625D, 0.625D, 1);
+	protected static final AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.375D, 0.375D, 0.0D, 0.625D, 0.625D, 12F / 16F);
+	protected static final AxisAlignedBB WEST_AABB = new AxisAlignedBB(1 - (12F / 16F), 0.375D, 0.375D, 1, 0.625D, 0.625D);
+	protected static final AxisAlignedBB EAST_AABB = new AxisAlignedBB(0.0D, 0.375D, 0.375D, 12F / 16F, 0.625D, 0.625D);
+
 	public BlockFlagWall(FlagType type)
 	{
 		super(type);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-
 	}
 
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
@@ -35,11 +39,6 @@ public class BlockFlagWall extends BlockFlag
 	{
 		return true;
 	}
-
-	protected static final AxisAlignedBB NORTH_AABB = new AxisAlignedBB(0.375D, 0.375D, 1 - (12F / 16F), 0.625D, 0.625D, 1);
-	protected static final AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.375D, 0.375D, 0.0D, 0.625D, 0.625D, 12F / 16F);
-	protected static final AxisAlignedBB WEST_AABB = new AxisAlignedBB(1 - (12F / 16F), 0.375D, 0.375D, 1, 0.625D, 0.625D);
-	protected static final AxisAlignedBB EAST_AABB = new AxisAlignedBB(0.0D, 0.375D, 0.375D, 12F / 16F, 0.625D, 0.625D);
 
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
@@ -69,7 +68,7 @@ public class BlockFlagWall extends BlockFlag
 
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
-		EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+		EnumFacing enumfacing = state.getValue(FACING);
 
 		if (!worldIn.getBlockState(pos.offset(enumfacing.getOpposite())).getMaterial().isSolid())
 		{
@@ -101,6 +100,4 @@ public class BlockFlagWall extends BlockFlag
 	{
 		return new BlockStateContainer(this, new IProperty[] {FACING});
 	}
-
-
 }

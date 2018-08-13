@@ -1,6 +1,7 @@
 package party.lemons.alternatespawnsystem.spawning;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
@@ -33,6 +34,25 @@ public class SpawnControl
 	}
 
 	/***
+	 * Vanilla checks minus light check
+	 * @param world
+	 * @param e
+	 * @return can mob spawn here
+	 */
+	public static boolean canMobSpawn(World world, EntityMob e)
+	{
+		IBlockState iblockstate = world.getBlockState((new BlockPos(e)).down());
+
+		return     checkDifficulty(world)
+				&& canSpawnAtLocation(iblockstate, e)
+				&& checkColliding(e)
+				&& checkPathWeight(e)
+				&& checkSunlight(world, e);
+	}
+
+	//// Mob Spawning Rules///
+
+	/***
 	 * Checks if a given entity is within any flag area
 	 * @param world
 	 * @param e
@@ -43,22 +63,30 @@ public class SpawnControl
 		return WorldBaseData.get(world).isInArea(e.getPosition());
 	}
 
-	/***
-	 * Vanilla checks minus light check
-	 * @param world
-	 * @param e
-	 * @return can mob spawn here
-	 */
-	public static boolean canMobSpawn(World world, EntityMob e)
+	public static boolean checkPathWeight(EntityMob e)
 	{
-		IBlockState iblockstate = world.getBlockState((new BlockPos(e)).down());
-
-		boolean pathWeight = e.getBlockPathWeight(new BlockPos(e.posX, e.getEntityBoundingBox().minY, e.posZ)) >= 0.0F;
-		boolean canSpawnBlock = iblockstate.canEntitySpawn(e);
-		boolean difficulty = world.getDifficulty() != EnumDifficulty.PEACEFUL;
-		boolean sunLight = world.getLightFor(EnumSkyBlock.SKY, e.getPosition()) - world.getSkylightSubtracted() <= 8;
-		boolean colliding = e.isNotColliding();
-
-		return pathWeight && canSpawnBlock && difficulty && sunLight && colliding;
+		return e.getBlockPathWeight(new BlockPos(e.posX, e.getEntityBoundingBox().minY, e.posZ)) >= 0.0F;
 	}
+
+	public static boolean canSpawnAtLocation(IBlockState state, EntityMob e)
+	{
+		return state.canEntitySpawn(e);
+	}
+
+	public static boolean checkDifficulty(World world)
+	{
+		return  world.getDifficulty() != EnumDifficulty.PEACEFUL;
+	}
+
+	public static boolean checkSunlight(World world, EntityMob e)
+	{
+		return world.getLightFor(EnumSkyBlock.SKY, e.getPosition()) - world.getSkylightSubtracted() <= 9;
+	}
+
+	public static boolean checkColliding(EntityMob e)
+	{
+		return e.isNotColliding();
+	}
+
+	//// End Spawning Rules ////
 }

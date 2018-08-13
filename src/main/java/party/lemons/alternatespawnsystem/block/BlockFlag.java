@@ -29,15 +29,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.DyeUtils;
-import party.lemons.alternatespawnsystem.AlternateSpawn;
 import party.lemons.alternatespawnsystem.block.tileentity.TileEntityFlag;
 import party.lemons.alternatespawnsystem.spawning.FlagType;
 import party.lemons.alternatespawnsystem.spawning.WorldBaseData;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Optional;
 
 /**
  * Created by Sam on 12/08/2018.
@@ -104,7 +100,7 @@ public class BlockFlag extends Block
 
 			int col = (0xff << 24) | (((int)red&0xff) << 16) | (((int)green&0xff) << 8) | ((int)blue&0xff);
 
-			ItemStack stack = new ItemStack(this.getStandingInstance());
+			ItemStack stack = new ItemStack(getType().getGroundBlock());
 			((ItemBlockFlag)stack.getItem()).setColor(stack, col);
 			spawnAsEntity(worldIn, pos, stack);
 		}
@@ -112,20 +108,6 @@ public class BlockFlag extends Block
 		super.breakBlock(worldIn, pos, state);
 	}
 
-	private Block getStandingInstance()
-	{
-		switch(type)
-		{
-			case BASIC:
-
-				return AlternateSpawnBlocks.BASIC_FLAG;
-			case GOLD:
-				return AlternateSpawnBlocks.GOLDEN_FLAG;
-			case DIAMOND:
-				return AlternateSpawnBlocks.DIAMOND_FLAG;
-		}
-		return null;
-	}
 	@SideOnly(Side.CLIENT)
 	public boolean addHitEffects(IBlockState state, World worldObj, RayTraceResult target, net.minecraft.client.particle.ParticleManager manager)
 	{

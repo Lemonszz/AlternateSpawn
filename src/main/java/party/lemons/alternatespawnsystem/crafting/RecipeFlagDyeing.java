@@ -9,11 +9,14 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import party.lemons.alternatespawnsystem.block.ItemBlockFlag;
 
-public class RecipeFlagDying extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe
+
+/***
+ * Class copied and modified from vanilla leather armour dyeing
+ */
+public class RecipeFlagDyeing extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe
 {
-	/**
-	 * Used to check if a recipe matches current crafting inventory
-	 */
+	//TODO: rename stuff in here
+
 	public boolean matches(InventoryCrafting inv, World worldIn)
 	{
 		ItemStack itemstack = ItemStack.EMPTY;

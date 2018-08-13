@@ -15,19 +15,12 @@ public class TileEntityFlag extends TileEntity
 {
 	private UUID owner;
 	private float red, green, blue;
-	public boolean standingOverride = false;
 
 	public TileEntityFlag()
 	{
 		red = 1F;
 		green = 1F;
 		blue = 1F;
-	}
-
-	public TileEntityFlag(boolean standingOverride)
-	{
-		this();
-		standingOverride = standingOverride;
 	}
 
 	public void setRgb(float red, float green, float blue)
@@ -90,7 +83,6 @@ public class TileEntityFlag extends TileEntity
 		return super.writeToNBT(compound);
 	}
 
-
 	@Override
 	public NBTTagCompound getUpdateTag() {
 		return writeToNBT(new NBTTagCompound());
@@ -108,6 +100,7 @@ public class TileEntityFlag extends TileEntity
 		this.readFromNBT(packet.getNbtCompound());
 	}
 
+	//used for the itemstack renderer to know what type of block this is
 	public void setBlock(Block block)
 	{
 		this.blockType = block;

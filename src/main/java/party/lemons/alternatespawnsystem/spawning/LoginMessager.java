@@ -32,6 +32,7 @@ public class LoginMessager
 
 		EntityPlayerMP playerMP = (EntityPlayerMP) event.player;
 		int time = playerMP.getStatFile().readStat(StatList.PLAY_ONE_MINUTE);
+
 		if(time < AlternateSpawnConfig.LOGIN_MESSAGE_MAX_TIME) 	//Check player play time
 		{
 			//Send message

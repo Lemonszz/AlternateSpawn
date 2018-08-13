@@ -33,11 +33,10 @@ public class AlternateSpawnerModelRegistry
 
 	public static void registerFlagModel(Block block)
 	{
-			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
-					0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),
+				0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
 
-			setInvisibleModel(block, BlockFlag.ROTATION);
-
+		setInvisibleModel(block, BlockFlag.ROTATION);
 		Item.getItemFromBlock(block).setTileEntityItemStackRenderer(new TileEntityFlagStackRenderer());
 	}
 

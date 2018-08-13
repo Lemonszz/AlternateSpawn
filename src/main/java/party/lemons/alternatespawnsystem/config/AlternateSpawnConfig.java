@@ -34,9 +34,7 @@ public class AlternateSpawnConfig
 	@Config.RangeInt(min = 0)
 	public static int MAX_PLAYER_BASES = 4;
 
-
 	@Config.Name("Max Flag Stack size")
 	@Config.RangeInt(min = 1, max = 64)
 	public static int FLAG_STACK_SIZER = 16;
-
 }

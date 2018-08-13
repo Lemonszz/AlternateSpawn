@@ -20,23 +20,12 @@ import party.lemons.alternatespawnsystem.spawning.FlagType;
 @GameRegistry.ObjectHolder("alternatespawnsystem")
 public class AlternateSpawnBlocks
 {
-	@GameRegistry.ObjectHolder("basic_flag")
-	public static Block BASIC_FLAG = Blocks.AIR;
-
-	@GameRegistry.ObjectHolder("golden_flag")
-	public static Block GOLDEN_FLAG = Blocks.AIR;
-
-	@GameRegistry.ObjectHolder("diamond_flag")
-	public static Block DIAMOND_FLAG = Blocks.AIR;
-
-	@GameRegistry.ObjectHolder("basic_flag_wall")
-	public static Block BASIC_FLAG_WALL = Blocks.AIR;
-
-	@GameRegistry.ObjectHolder("golden_flag_wall")
-	public static Block GOLDEN_FLAG_WALL = Blocks.AIR;
-
-	@GameRegistry.ObjectHolder("diamond_flag_wall")
-	public static Block DIAMOND_FLAG_WALL = Blocks.AIR;
+	public static final Block BASIC_FLAG = Blocks.AIR;
+	public static final Block GOLDEN_FLAG = Blocks.AIR;
+	public static final Block DIAMOND_FLAG = Blocks.AIR;
+	public static final Block BASIC_FLAG_WALL = Blocks.AIR;
+	public static final Block GOLDEN_FLAG_WALL = Blocks.AIR;
+	public static final Block DIAMOND_FLAG_WALL = Blocks.AIR;
 
 	@SubscribeEvent
 	public static void onBlockRegister(RegistryEvent.Register<Block> event)
@@ -61,7 +50,6 @@ public class AlternateSpawnBlocks
 				new ItemBlockFlag(GOLDEN_FLAG).setRegistryName(AlternateSpawn.MODID, "gold_flag"),
 				new ItemBlockFlag(DIAMOND_FLAG).setRegistryName(AlternateSpawn.MODID, "diamond_flag")
 		);
-
 
 		for(int i = 0; i < 16; i++)
 			OreDictionary.registerOre("blockWool", new ItemStack(Blocks.WOOL, 1, i));

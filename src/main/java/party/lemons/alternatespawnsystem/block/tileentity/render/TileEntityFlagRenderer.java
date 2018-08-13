@@ -27,7 +27,7 @@ public class TileEntityFlagRenderer extends TileEntitySpecialRenderer<TileEntity
 		BlockFlag flag = (BlockFlag) te.getBlockType();
 
 		boolean worldExists = te.getWorld() != null;
-		boolean isStanding =  !flag.isWall() || te.standingOverride;
+		boolean isStanding =  !flag.isWall();
 		int meta = worldExists ? te.getBlockMetadata() : 0;
 		long ticks = worldExists ? te.getWorld().getTotalWorldTime() : 0L;
 		GlStateManager.pushMatrix();
@@ -45,10 +45,10 @@ public class TileEntityFlagRenderer extends TileEntitySpecialRenderer<TileEntity
 			switch(meta)
 			{
 				case 2:
-						GlStateManager.translate(0.5F, 0.5F, 0.5F);
-						GlStateManager.rotate(90, 1, 0, 0);
-						GlStateManager.rotate(180, 0, 1, 0);
-						GlStateManager.rotate(180, 0, 0, 1);
+					GlStateManager.translate(0.5F, 0.5F, 0.5F);
+					GlStateManager.rotate(90, 1, 0, 0);
+					GlStateManager.rotate(180, 0, 1, 0);
+					GlStateManager.rotate(180, 0, 0, 1);
 					break;
 				case 3:
 					GlStateManager.translate(0.5F, 0.5F, 0.5F);

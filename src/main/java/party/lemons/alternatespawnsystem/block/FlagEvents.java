@@ -1,14 +1,12 @@
 package party.lemons.alternatespawnsystem.block;
 
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
-import party.lemons.alternatespawnsystem.crafting.RecipeFlagDying;
+import party.lemons.alternatespawnsystem.crafting.RecipeFlagDyeing;
 import party.lemons.alternatespawnsystem.spawning.WorldBaseData;
 
 /**
@@ -27,6 +25,6 @@ public class FlagEvents
 	@SubscribeEvent
 	public static void onRegisterRecipie(RegistryEvent.Register<IRecipe> event)
 	{
-		event.getRegistry().register(new RecipeFlagDying().setRegistryName(AlternateSpawn.MODID, "dye_flag"));
+		event.getRegistry().register(new RecipeFlagDyeing().setRegistryName(AlternateSpawn.MODID, "dye_flag"));
 	}
 }

@@ -37,10 +37,10 @@ public class ItemBlockFlag extends ItemBlock
 
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		IBlockState iblockstate = worldIn.getBlockState(pos);
-		boolean flag = iblockstate.getBlock().isReplaceable(worldIn, pos);
+		IBlockState state = worldIn.getBlockState(pos);
+		boolean flag = state.getBlock().isReplaceable(worldIn, pos);
 
-		if (facing != EnumFacing.DOWN && (iblockstate.getMaterial().isSolid() || flag) && (!flag || facing == EnumFacing.UP))
+		if (facing != EnumFacing.DOWN && (state.getMaterial().isSolid() || flag) && (!flag || facing == EnumFacing.UP))
 		{
 			pos = pos.offset(facing);
 			ItemStack itemstack = player.getHeldItem(hand);
@@ -57,11 +57,13 @@ public class ItemBlockFlag extends ItemBlock
 
 					if (facing == EnumFacing.UP)
 					{
+						//ground
 						int i = MathHelper.floor((double)((player.rotationYaw + 180.0F) * 16.0F / 360.0F) + 0.5D) & 15;
 						worldIn.setBlockState(pos, block.getDefaultState().withProperty(BlockFlag.ROTATION, Integer.valueOf(i)), 3);
 					}
 					else
 					{
+						//Wall
 						worldIn.setBlockState(pos, BlockFlag.getWallInstance(block).getDefaultState().withProperty(BlockWallSign.FACING, facing), 3);
 					}
 
@@ -70,6 +72,7 @@ public class ItemBlockFlag extends ItemBlock
 						CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)player, pos, itemstack);
 					}
 
+					///Set colour
 					TileEntity te = worldIn.getTileEntity(pos);
 					if(te instanceof TileEntityFlag)
 					{
@@ -99,25 +102,15 @@ public class ItemBlockFlag extends ItemBlock
 	public String getItemStackDisplayName(ItemStack stack)
 	{
 		FlagType type = ((BlockFlag)block).getType();
-		String typeString = "";
-		switch(type)
-		{
-			case GOLD:
-				typeString = "gold";
-				break;
-			case DIAMOND:
-				typeString = "diamond";
-				break;
-			default:
-				typeString = "basic";
-				break;
-		}
-
-
-		String s = "item." + AlternateSpawn.MODID +"." + typeString + ".flag";
+		String s = "item." + AlternateSpawn.MODID +"." + type.getName() + ".flag";
 		return I18n.translateToLocal(s);
 	}
 
+	/***
+	 * Sets the colour of an itemstack
+	 * @param stack
+	 * @param color
+	 */
 	public void setColor(ItemStack stack, int color)
 	{
 		NBTTagCompound nbttagcompound = stack.getTagCompound();
@@ -138,6 +131,11 @@ public class ItemBlockFlag extends ItemBlock
 		nbttagcompound1.setInteger("color", color);
 	}
 
+	//TODO: Add cauldron washing
+	/***
+	 * Removes colour from itemstack
+	 * @param stack
+	 */
 	public void removeColor(ItemStack stack)
 	{
 		NBTTagCompound nbttagcompound = stack.getTagCompound();
@@ -153,6 +151,11 @@ public class ItemBlockFlag extends ItemBlock
 		}
 	}
 
+	/***
+	 * Gets colour from itemstack
+	 * @param stack
+	 * @return colour
+	 */
 	public int getColor(ItemStack stack)
 	{
 		NBTTagCompound nbttagcompound = stack.getTagCompound();
@@ -170,6 +173,11 @@ public class ItemBlockFlag extends ItemBlock
 		return 0xFFFFFF;
 	}
 
+	/***
+	 * Does that stack have a colour?
+	 * @param stack
+	 * @return has colour
+	 */
 	public boolean hasColor(ItemStack stack)
 	{
 		NBTTagCompound nbttagcompound = stack.getTagCompound();
