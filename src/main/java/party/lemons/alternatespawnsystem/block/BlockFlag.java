@@ -11,23 +11,32 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityShulkerBox;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.DyeUtils;
+import party.lemons.alternatespawnsystem.AlternateSpawn;
 import party.lemons.alternatespawnsystem.block.tileentity.TileEntityFlag;
 import party.lemons.alternatespawnsystem.spawning.FlagType;
 import party.lemons.alternatespawnsystem.spawning.WorldBaseData;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -37,7 +46,7 @@ public class BlockFlag extends Block
 {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	public static final PropertyInteger ROTATION = PropertyInteger.create("rotation", 0, 15);
-	protected static final AxisAlignedBB STANDING_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D);
+	protected static final AxisAlignedBB STANDING_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 0.8D, 0.625D);
 	private FlagType type;
 
 	public BlockFlag(FlagType type)
@@ -49,6 +58,84 @@ public class BlockFlag extends Block
 
 		this.type = type;
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
+		this.setHardness(0.3F);
+		this.setResistance(2F);
+	}
+
+	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+	{
+	}
+
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		if(!(placer instanceof EntityPlayer))
+			return;
+
+		if(!world.isRemote && state.getBlock() instanceof BlockFlag)
+		{
+			EntityPlayer player = (EntityPlayer) placer;
+			BlockFlag flag = (BlockFlag) state.getBlock();
+			WorldBaseData data = WorldBaseData.get(world);
+
+			//Attempt to create a base
+			if(data.canCreateBase(player))
+			{
+				data.createBase(pos, flag.getType().getFlagSize(), player);
+				player.sendStatusMessage(new TextComponentTranslation("alternatespawnsystem.message.create.success"), true);
+			}
+			else
+			{
+				player.sendStatusMessage(new TextComponentTranslation("alternatespawnsystem.message.create.fail.amount"), true);
+			}
+		}
+	}
+
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+	{
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+
+		if (tileentity instanceof TileEntityFlag)
+		{
+			TileEntityFlag flag = (TileEntityFlag)tileentity;
+
+			float red = (flag).getRed() * 255;
+			float green = (flag).getGreen() * 255;
+			float blue = (flag).getBlue() * 255;
+
+			int col = (0xff << 24) | (((int)red&0xff) << 16) | (((int)green&0xff) << 8) | ((int)blue&0xff);
+
+			ItemStack stack = new ItemStack(this.getStandingInstance());
+			((ItemBlockFlag)stack.getItem()).setColor(stack, col);
+			spawnAsEntity(worldIn, pos, stack);
+		}
+		WorldBaseData.get(worldIn).removeBaseAt(pos);
+		super.breakBlock(worldIn, pos, state);
+	}
+
+	private Block getStandingInstance()
+	{
+		switch(type)
+		{
+			case BASIC:
+
+				return AlternateSpawnBlocks.BASIC_FLAG;
+			case GOLD:
+				return AlternateSpawnBlocks.GOLDEN_FLAG;
+			case DIAMOND:
+				return AlternateSpawnBlocks.DIAMOND_FLAG;
+		}
+		return null;
+	}
+	@SideOnly(Side.CLIENT)
+	public boolean addHitEffects(IBlockState state, World worldObj, RayTraceResult target, net.minecraft.client.particle.ParticleManager manager)
+	{
+		return true;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public boolean addDestroyEffects(World world, BlockPos pos, net.minecraft.client.particle.ParticleManager manager)
+	{
+		return true;
 	}
 
 	public static Block getWallInstance(Block block)
@@ -75,11 +162,6 @@ public class BlockFlag extends Block
 		return type;
 	}
 
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-	{
-		WorldBaseData.get(worldIn).removeBaseAt(pos);
-		super.breakBlock(worldIn, pos, state);
-	}
 
 	public boolean hasTileEntity(IBlockState state)
 	{

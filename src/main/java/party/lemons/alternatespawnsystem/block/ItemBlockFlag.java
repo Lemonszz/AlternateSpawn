@@ -19,6 +19,7 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
 import party.lemons.alternatespawnsystem.block.tileentity.TileEntityFlag;
+import party.lemons.alternatespawnsystem.config.AlternateSpawnConfig;
 import party.lemons.alternatespawnsystem.spawning.FlagType;
 
 /**
@@ -30,7 +31,7 @@ public class ItemBlockFlag extends ItemBlock
 	{
 		super(flag);
 
-		this.maxStackSize = 16;
+		this.maxStackSize = AlternateSpawnConfig.FLAG_STACK_SIZER;
 		this.setCreativeTab(CreativeTabs.DECORATIONS);
 	}
 

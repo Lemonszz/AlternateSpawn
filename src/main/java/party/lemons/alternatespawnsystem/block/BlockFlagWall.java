@@ -25,16 +25,21 @@ public class BlockFlagWall extends BlockFlag
 
 	}
 
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+	{
+		super.breakBlock(worldIn, pos, state);
+	}
+
 	@Override
 	public boolean isWall()
 	{
 		return true;
 	}
 
-	protected static final AxisAlignedBB NORTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.875D, 1.0D, 0.78125D, 1.0D);
-	protected static final AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.78125D, 0.125D);
-	protected static final AxisAlignedBB WEST_AABB = new AxisAlignedBB(0.875D, 0.0D, 0.0D, 1.0D, 0.78125D, 1.0D);
-	protected static final AxisAlignedBB EAST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.125D, 0.78125D, 1.0D);
+	protected static final AxisAlignedBB NORTH_AABB = new AxisAlignedBB(0.375D, 0.375D, 1 - (12F / 16F), 0.625D, 0.625D, 1);
+	protected static final AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.375D, 0.375D, 0.0D, 0.625D, 0.625D, 12F / 16F);
+	protected static final AxisAlignedBB WEST_AABB = new AxisAlignedBB(1 - (12F / 16F), 0.375D, 0.375D, 1, 0.625D, 0.625D);
+	protected static final AxisAlignedBB EAST_AABB = new AxisAlignedBB(0.0D, 0.375D, 0.375D, 12F / 16F, 0.625D, 0.625D);
 
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{

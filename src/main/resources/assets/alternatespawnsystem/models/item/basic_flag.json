@@ -1,5 +1,8 @@
 {
   "parent": "builtin/entity",
+  "textures": {
+    "particle": "blocks/planks_oak"
+  },
   "display": {
     "gui": {
       "rotation": [ 45, 270, 0 ],
