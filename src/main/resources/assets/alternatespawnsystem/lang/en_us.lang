@@ -1,0 +1,16 @@
+alternatespawnsystem.message.login=Alternate Spawn is enabled. Craft a base flag to protect your claimed area. Click here for more information.
+
+tile.alternatespawnsystem.flag.name=Flag
+item.alternatespawnsystem.diamond.flag=Diamond Flag
+item.alternatespawnsystem.gold.flag=Golden Flag
+item.alternatespawnsystem.basic.flag=Flag
+
+alternatespawnsystem.message.create.fail.amount=You have reached your limit of active flags
+alternatespawnsystem.message.create.success=You have successfully activated the flag
+
+alternatespawnsystem.message.deactivate=Flag Deactivated
+alternatespawnsystem.message.activate=Flag Activated
+alternatespawnsystem.message.activateremove=This Flag Was Activated, but one of your other flags was deactivated
+
+alternatespawnsystem.message.hasbase=This flag is active
+alternatespawnsystem.message.nobase=This flag is inactive

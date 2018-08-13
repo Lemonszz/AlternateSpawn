@@ -1,0 +1,27 @@
+{
+  "result": {
+    "item": "alternatespawnsystem:basic_flag",
+    "count": 1,
+    "data": 0
+  },
+  "pattern": [
+    " WS",
+    "WWS",
+    "  B"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "type": "forge:ore_dict",
+      "ore": "ingotIron"
+    },
+    "S": {
+      "type": "forge:ore_dict",
+      "ore": "stickWood"
+    },
+    "W": {
+      "type": "forge:ore_dict",
+      "ore": "blockWool"
+    }
+  }
+}
