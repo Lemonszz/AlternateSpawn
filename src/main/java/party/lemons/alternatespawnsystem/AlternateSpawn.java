@@ -12,7 +12,7 @@ import party.lemons.alternatespawnsystem.proxy.IProxy;
 public class AlternateSpawn
 {
 	public static final String MODID = "alternatespawnsystem";
-	public static final String VERSION = "0.0.3";
+	public static final String VERSION = "1.0.0";
 	public static final String NAME = "A.S.S.";
 
 	@SidedProxy(clientSide = "party.lemons.alternatespawnsystem.proxy.ClientProxy", serverSide = "party.lemons.alternatespawnsystem.proxy.ServerProxy")
