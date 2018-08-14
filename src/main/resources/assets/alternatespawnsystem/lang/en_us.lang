@@ -10,7 +10,7 @@ alternatespawnsystem.message.create.success=You have successfully activated the 
 
 alternatespawnsystem.message.deactivate=Flag Deactivated
 alternatespawnsystem.message.activate=Flag Activated
-alternatespawnsystem.message.activateremove=This Flag Was Activated, but one of your other flags was deactivated
+alternatespawnsystem.message.activateremove=This Flag was activated, but one of your other flags was deactivated
 
 alternatespawnsystem.message.hasbase=This flag is active
 alternatespawnsystem.message.nobase=This flag is inactive

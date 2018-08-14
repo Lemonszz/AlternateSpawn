@@ -1,12 +1,17 @@
 package party.lemons.alternatespawnsystem.config;
 
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
 
 /**
  * Created by Sam on 12/08/2018.
  */
 @Config(modid = AlternateSpawn.MODID)
+@Mod.EventBusSubscriber(modid = AlternateSpawn.MODID)
 public class AlternateSpawnConfig
 {
 	@Config.Comment("Should new players see a message regarding the new mechanics?")
@@ -36,5 +41,16 @@ public class AlternateSpawnConfig
 
 	@Config.Name("Max Flag Stack size")
 	@Config.RangeInt(min = 1, max = 64)
+	@Config.RequiresMcRestart
 	public static int FLAG_STACK_SIZER = 16;
+
+	@SubscribeEvent
+	public static void onConfigReload(ConfigChangedEvent event)
+	{
+		if(event.getModID().equals(AlternateSpawn.MODID))
+		{
+			ConfigManager.sync(event.getConfigID(), Config.Type.INSTANCE);
+		}
+	}
+
 }
