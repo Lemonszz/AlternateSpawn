@@ -4,10 +4,10 @@
       "item": "alternatespawnsystem:golden_flag"
     },
     "title": {
-      "translate": "advancements.alternatespawnsystem.story.place_gold_flag_basic.title"
+      "translate": "advancements.alternatespawnsystem.story.place_gold_flag.title"
     },
     "description": {
-      "translate": "advancements.alternatespawnsystem.story.place_gold_flag_basic.description"
+      "translate": "advancements.alternatespawnsystem.story.place_gold_flag.description"
     },
     "frame": "goal"
   },

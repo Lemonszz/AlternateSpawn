@@ -14,3 +14,15 @@ alternatespawnsystem.message.activateremove=This Flag was activated, but one of 
 
 alternatespawnsystem.message.hasbase=This flag is active
 alternatespawnsystem.message.nobase=This flag is inactive
+
+advancements.alternatespawnsystem.story.place_flag_basic.title=I Crafted, I Mined, I Conquered
+advancements.alternatespawnsystem.story.place_flag_basic.description=Claim some land with a flag
+
+advancements.alternatespawnsystem.story.place_gold_flag.title=Admiralty Law
+advancements.alternatespawnsystem.story.place_gold_flag.description=Place down a golden flag
+
+advancements.alternatespawnsystem.story.place_diamond_flag_basic.title=Maximum Protection
+advancements.alternatespawnsystem.story.place_diamond_flag_basic.description=Protect your land with a diamond flag
+
+alternatespawnsystem.flag_fail_sound=Flag deactivated
+alternatespawnsystem.flag_succeed_sound=Flag activated

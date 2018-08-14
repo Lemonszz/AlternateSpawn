@@ -30,6 +30,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import party.lemons.alternatespawnsystem.block.tileentity.TileEntityFlag;
+import party.lemons.alternatespawnsystem.effect.AlternateSpawnSounds;
 import party.lemons.alternatespawnsystem.spawning.FlagType;
 import party.lemons.alternatespawnsystem.spawning.WorldBaseData;
 
@@ -67,7 +68,6 @@ public class BlockFlag extends Block
 		if(!(placer instanceof EntityPlayer))
 			return;
 
-		System.out.println("Debug");
 		if(!world.isRemote && state.getBlock() instanceof BlockFlag)
 		{
 			EntityPlayer player = (EntityPlayer) placer;
@@ -77,11 +77,13 @@ public class BlockFlag extends Block
 			//Attempt to create a base
 			if(data.canCreateBase(player))
 			{
+				world.playSound(null, pos, AlternateSpawnSounds.FLAG_SUCCEED, SoundCategory.BLOCKS, 1F, 1F - (world.rand.nextFloat() / 5));
 				data.createBase(pos, flag.getType().getFlagSize(), player);
 				player.sendStatusMessage(new TextComponentTranslation("alternatespawnsystem.message.create.success"), true);
 			}
 			else
 			{
+				world.playSound(null, pos, AlternateSpawnSounds.FLAG_FAIL, SoundCategory.BLOCKS, 1F, 1F + (world.rand.nextFloat() / 5));
 				player.sendStatusMessage(new TextComponentTranslation("alternatespawnsystem.message.create.fail.amount"), true);
 			}
 		}
@@ -240,10 +242,11 @@ public class BlockFlag extends Block
 
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if(!playerIn.isSneaking())
+		if(!playerIn.isSneaking() && !worldIn.isRemote)
 		{
 			if(WorldBaseData.get(worldIn).hasBaseAt(pos))
 			{
+				worldIn.playSound(null, pos, AlternateSpawnSounds.FLAG_FAIL, SoundCategory.BLOCKS, 1F, 1F + (worldIn.rand.nextFloat() / 5));
 				playerIn.sendStatusMessage(new TextComponentTranslation("alternatespawnsystem.message.deactivate"), true);
 				WorldBaseData.get(worldIn).removeBaseAt(pos);
 			}else
@@ -260,6 +263,8 @@ public class BlockFlag extends Block
 					WorldBaseData.get(worldIn).createBase(pos, getType().getFlagSize(), playerIn);
 					playerIn.sendStatusMessage(new TextComponentTranslation("alternatespawnsystem.message.activate"), true);
 				}
+				worldIn.playSound(null, pos, AlternateSpawnSounds.FLAG_SUCCEED, SoundCategory.BLOCKS, 1F, 1F - (worldIn.rand.nextFloat() / 5));
+
 			}
 		}
 		else

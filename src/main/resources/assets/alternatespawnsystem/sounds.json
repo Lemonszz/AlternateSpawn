@@ -1,0 +1,14 @@
+{
+  "flag_fail":
+  {
+    "category": "block",
+    "subtitle": "alternatespawnsystem.flag_fail_sound",
+    "sounds" :  [ "alternatespawnsystem:low_down"]
+  },
+  "flag_succeed":
+  {
+    "category": "block",
+    "subtitle": "alternatespawnsystem.flag_succeed_sound",
+    "sounds": ["alternatespawnsystem:high_up"]
+  }
+}

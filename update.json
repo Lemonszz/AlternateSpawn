@@ -1,10 +1,11 @@
 {
   "homepage": "https://minecraft.curseforge.com/projects/simple-underground-biomes",
   "promos": {
-    "1.12.2-latest": "0.0.3"
+    "1.12.2-latest": "1.0.0"
   },
   "1.12.2": {
     "0.0.1": "Exists",
-    "0.0.3": "Various fixes"
+    "0.0.3": "Various fixes",
+    "1.0.0": "Full Release- Sounds, Advancements and Fixes - oh my"
   }
 }
