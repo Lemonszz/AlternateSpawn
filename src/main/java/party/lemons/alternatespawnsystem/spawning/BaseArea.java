@@ -29,7 +29,7 @@ public class BaseArea
 
 	public boolean inRadius(BlockPos checkPos)
 	{
-		return pos.getDistance(checkPos.getX(), checkPos.getY(), checkPos.getZ()) <= radius;
+		return pos.distanceSq(checkPos) <= radius * radius;
 	}
 
 	public void readFromNBT(NBTTagCompound compound)
