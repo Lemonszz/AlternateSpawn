@@ -16,11 +16,7 @@
     "place_diamond_flag": {
       "trigger": "minecraft:placed_block",
       "conditions": {
-        "items": [
-          {
-            "block": "alternatespawnsystem:diamond_flag"
-          }
-        ]
+        "block" : "alternatespawnsystem:diamond_flag"
       }
     }
   }

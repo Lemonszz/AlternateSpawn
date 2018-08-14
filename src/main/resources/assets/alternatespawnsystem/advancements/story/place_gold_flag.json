@@ -16,11 +16,7 @@
     "place_gold_flag": {
       "trigger": "minecraft:placed_block",
       "conditions": {
-        "items": [
-          {
-            "block": "alternatespawnsystem:golden_flag"
-          }
-        ]
+        "block" : "alternatespawnsystem:golden_flag"
       }
     }
   }

@@ -15,11 +15,7 @@
     "place_basic_flag": {
       "trigger": "minecraft:placed_block",
       "conditions": {
-        "items": [
-          {
-            "block": "alternatespawnsystem:basic_flag"
-          }
-        ]
+        "block" : "alternatespawnsystem:basic_flag"
       }
     }
   }
