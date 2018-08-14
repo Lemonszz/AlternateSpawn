@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "alternatespawnsystem:golden_flag"
+    },
+    "title": {
+      "translate": "advancements.alternatespawnsystem.story.place_gold_flag_basic.title"
+    },
+    "description": {
+      "translate": "advancements.alternatespawnsystem.story.place_gold_flag_basic.description"
+    },
+    "frame": "goal"
+  },
+  "parent": "alternatespawnsystem:story/place_flag",
+  "criteria": {
+    "place_gold_flag": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "items": [
+          {
+            "block": "alternatespawnsystem:golden_flag"
+          }
+        ]
+      }
+    }
+  }
+}

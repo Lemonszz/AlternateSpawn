@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "alternatespawnsystem:diamond_flag"
+    },
+    "title": {
+      "translate": "advancements.alternatespawnsystem.story.place_diamond_flag_basic.title"
+    },
+    "description": {
+      "translate": "advancements.alternatespawnsystem.story.place_diamond_flag_basic.description"
+    },
+    "frame": "challenge"
+  },
+  "parent": "alternatespawnsystem:story/place_gold_flag",
+  "criteria": {
+    "place_diamond_flag": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "items": [
+          {
+            "block": "alternatespawnsystem:diamond_flag"
+          }
+        ]
+      }
+    }
+  }
+}

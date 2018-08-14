@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "alternatespawnsystem:basic_flag"
+    },
+    "title": {
+      "translate": "advancements.alternatespawnsystem.story.place_flag_basic.title"
+    },
+    "description": {
+      "translate": "advancements.alternatespawnsystem.story.place_flag_basic.description"
+    }
+  },
+  "parent": "minecraft:story/smelt_iron",
+  "criteria": {
+    "place_basic_flag": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "items": [
+          {
+            "block": "alternatespawnsystem:basic_flag"
+          }
+        ]
+      }
+    }
+  }
+}

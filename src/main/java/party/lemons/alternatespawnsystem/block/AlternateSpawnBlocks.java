@@ -47,7 +47,7 @@ public class AlternateSpawnBlocks
 	{
 		event.getRegistry().registerAll(
 				new ItemBlockFlag(BASIC_FLAG).setRegistryName(AlternateSpawn.MODID, "basic_flag"),
-				new ItemBlockFlag(GOLDEN_FLAG).setRegistryName(AlternateSpawn.MODID, "gold_flag"),
+				new ItemBlockFlag(GOLDEN_FLAG).setRegistryName(AlternateSpawn.MODID, "golden_flag"),
 				new ItemBlockFlag(DIAMOND_FLAG).setRegistryName(AlternateSpawn.MODID, "diamond_flag")
 		);
 
