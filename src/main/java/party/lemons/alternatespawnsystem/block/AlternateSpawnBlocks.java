@@ -44,6 +44,7 @@ public class AlternateSpawnBlocks
 			createFlag(FlagType.DIAMOND, "diamond_flag", true)
 		);
 
+		//TODO: This should of used the resource location variant, is there a way to change it and preserve data?
 		GameRegistry.registerTileEntity(TileEntityFlag.class, AlternateSpawn.MODID + "_flag");
 	}
 

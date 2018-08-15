@@ -45,6 +45,9 @@ public class AlternateSpawnConfig
 	@Config.RequiresMcRestart
 	public static int FLAG_STACK_SIZER = 16;
 
+	@Config.Name("Allow Fake Players")
+	public static boolean ALLOW_FAKE_PLAYERS = false;
+
 	@SubscribeEvent
 	public static void onConfigReload(ConfigChangedEvent event)
 	{

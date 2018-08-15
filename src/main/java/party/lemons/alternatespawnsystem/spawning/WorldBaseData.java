@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.common.util.FakePlayer;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
 import party.lemons.alternatespawnsystem.config.AlternateSpawnConfig;
 
@@ -80,6 +81,9 @@ public class WorldBaseData extends WorldSavedData
 	 */
 	public void createBase(BlockPos pos, int radius, EntityPlayer player)
 	{
+		if(player instanceof FakePlayer && !AlternateSpawnConfig.ALLOW_FAKE_PLAYERS)
+			return;
+
 		BaseArea area = new BaseArea(player.getUniqueID(), radius, pos);
 		areas.add(area);
 
