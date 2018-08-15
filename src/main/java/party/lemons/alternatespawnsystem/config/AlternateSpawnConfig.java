@@ -6,6 +6,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
+import party.lemons.alternatespawnsystem.spawning.FlagType;
 
 /**
  * Created by Sam on 12/08/2018.
@@ -50,6 +51,10 @@ public class AlternateSpawnConfig
 		if(event.getModID().equals(AlternateSpawn.MODID))
 		{
 			ConfigManager.sync(event.getConfigID(), Config.Type.INSTANCE);
+
+			FlagType.BASIC.setFlagSize(BASIC_FLAG_RANGE);
+			FlagType.GOLD.setFlagSize(GOLDEN_FLAG_RANGE);
+			FlagType.DIAMOND.setFlagSize(DIAMOND_FLAG_RANGE);
 		}
 	}
 

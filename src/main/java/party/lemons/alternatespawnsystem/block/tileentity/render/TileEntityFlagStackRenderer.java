@@ -4,7 +4,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import party.lemons.alternatespawnsystem.block.ItemBlockFlag;
+import party.lemons.alternatespawnsystem.block.impl.ItemBlockFlag;
 import party.lemons.alternatespawnsystem.block.tileentity.TileEntityFlag;
 
 /**

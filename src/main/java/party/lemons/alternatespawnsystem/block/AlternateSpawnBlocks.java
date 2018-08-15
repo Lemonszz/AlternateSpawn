@@ -4,13 +4,18 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
+import party.lemons.alternatespawnsystem.block.impl.BlockFlag;
+import party.lemons.alternatespawnsystem.block.impl.BlockFlagWall;
+import party.lemons.alternatespawnsystem.block.impl.ItemBlockFlag;
 import party.lemons.alternatespawnsystem.block.tileentity.TileEntityFlag;
+import party.lemons.alternatespawnsystem.crafting.RecipeFlagDyeing;
 import party.lemons.alternatespawnsystem.spawning.FlagType;
 
 /**
@@ -61,5 +66,11 @@ public class AlternateSpawnBlocks
 			return new BlockFlagWall(type).setTranslationKey(AlternateSpawn.MODID + "." + name).setRegistryName(AlternateSpawn.MODID, name + "_wall");
 
 		return new BlockFlag(type).setTranslationKey(AlternateSpawn.MODID + "." + name).setRegistryName(AlternateSpawn.MODID, name);
+	}
+
+	@SubscribeEvent
+	public static void onRegisterRecipe(RegistryEvent.Register<IRecipe> event)
+	{
+		event.getRegistry().register(new RecipeFlagDyeing().setRegistryName(AlternateSpawn.MODID, "dye_flag"));
 	}
 }

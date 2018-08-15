@@ -1,4 +1,4 @@
-package party.lemons.alternatespawnsystem.block;
+package party.lemons.alternatespawnsystem.block.impl;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;

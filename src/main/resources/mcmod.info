@@ -1,6 +1,6 @@
 [
 {
-  "modid": "alternatespawn",
+  "modid": "alternatespawnsystem",
   "name": "Alternate Spawn",
   "description": "Alternate Hostile Mob Spawning",
   "version": "${version}",

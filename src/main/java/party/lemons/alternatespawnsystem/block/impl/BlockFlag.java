@@ -1,4 +1,4 @@
-package party.lemons.alternatespawnsystem.block;
+package party.lemons.alternatespawnsystem.block.impl;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -14,12 +14,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityShulkerBox;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -29,6 +25,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import party.lemons.alternatespawnsystem.block.AlternateSpawnBlocks;
 import party.lemons.alternatespawnsystem.block.tileentity.TileEntityFlag;
 import party.lemons.alternatespawnsystem.effect.AlternateSpawnSounds;
 import party.lemons.alternatespawnsystem.spawning.FlagType;
@@ -103,7 +100,7 @@ public class BlockFlag extends Block
 
 			int col = (0xff << 24) | (((int)red&0xff) << 16) | (((int)green&0xff) << 8) | ((int)blue&0xff);
 
-			ItemStack stack = new ItemStack(getType().getGroundBlock());
+			ItemStack stack = new ItemStack(getType().getStandingBlock());
 			((ItemBlockFlag)stack.getItem()).setColor(stack, col);
 			spawnAsEntity(worldIn, pos, stack);
 		}

@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
 import party.lemons.alternatespawnsystem.block.AlternateSpawnBlocks;
-import party.lemons.alternatespawnsystem.block.BlockFlag;
+import party.lemons.alternatespawnsystem.block.impl.BlockFlag;
 import party.lemons.alternatespawnsystem.block.tileentity.TileEntityFlag;
 
 import javax.annotation.Nullable;

@@ -1,26 +1,31 @@
 package party.lemons.alternatespawnsystem.spawning;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import party.lemons.alternatespawnsystem.block.AlternateSpawnBlocks;
 import party.lemons.alternatespawnsystem.config.AlternateSpawnConfig;
 
 import javax.annotation.Nonnull;
+import java.util.function.Supplier;
 
 /**
  * Created by Sam on 12/08/2018.
  */
-public enum FlagType
+public class FlagType
 {
-	BASIC("basic"),
-	GOLD("gold"),
-	DIAMOND("diamond");
+	public static final FlagType BASIC = new FlagType("basic", ()->AlternateSpawnBlocks.BASIC_FLAG, ()->AlternateSpawnBlocks.BASIC_FLAG_WALL, AlternateSpawnConfig.BASIC_FLAG_RANGE);
+	public static final FlagType GOLD = new FlagType("gold", ()->AlternateSpawnBlocks.GOLDEN_FLAG, ()->AlternateSpawnBlocks.GOLDEN_FLAG_WALL, AlternateSpawnConfig.GOLDEN_FLAG_RANGE);
+	public static final FlagType DIAMOND = new FlagType("diamond", ()->AlternateSpawnBlocks.DIAMOND_FLAG, ()->AlternateSpawnBlocks.DIAMOND_FLAG_WALL, AlternateSpawnConfig.DIAMOND_FLAG_RANGE);
 
-	private String name;
+	private final String name;
+	private int size;
+	private final Supplier<Block> wallBlockSupplier, standingBlockSupplier;
 
-	FlagType(String name)
+	public FlagType(String name, Supplier<Block> standingBlockSupplier, Supplier<Block> wallBlockSupplier, int size)
 	{
 		this.name = name;
+		this.wallBlockSupplier = wallBlockSupplier;
+		this.standingBlockSupplier = standingBlockSupplier;
+		this.size = size;
 	}
 
 	public String getName()
@@ -30,44 +35,21 @@ public enum FlagType
 
 	public int getFlagSize()
 	{
-		switch(this)
-		{
-			case GOLD:
-				return AlternateSpawnConfig.GOLDEN_FLAG_RANGE;
-			case DIAMOND:
-				return AlternateSpawnConfig.DIAMOND_FLAG_RANGE;
-			default:
-				return AlternateSpawnConfig.BASIC_FLAG_RANGE;
-		}
+		return size;
 	}
 
 	public @Nonnull Block getWallBlock()
 	{
-		switch(this)
-		{
-			case BASIC:
-				return AlternateSpawnBlocks.BASIC_FLAG_WALL;
-			case GOLD:
-				return AlternateSpawnBlocks.GOLDEN_FLAG_WALL;
-			case DIAMOND:
-				return AlternateSpawnBlocks.DIAMOND_FLAG_WALL;
-		}
-
-		return Blocks.AIR;
+		return wallBlockSupplier.get();
 	}
 
-	public @Nonnull Block getGroundBlock()
+	public @Nonnull Block getStandingBlock()
 	{
-		switch(this)
-		{
-			case BASIC:
-				return AlternateSpawnBlocks.BASIC_FLAG;
-			case GOLD:
-				return AlternateSpawnBlocks.GOLDEN_FLAG;
-			case DIAMOND:
-				return AlternateSpawnBlocks.DIAMOND_FLAG;
-		}
+		return standingBlockSupplier.get();
+	}
 
-		return Blocks.AIR;
+	public void setFlagSize(int size)
+	{
+		this.size = size;
 	}
 }

@@ -11,6 +11,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
+import party.lemons.alternatespawnsystem.block.impl.BlockFlag;
+import party.lemons.alternatespawnsystem.block.impl.BlockFlagWall;
 import party.lemons.alternatespawnsystem.block.tileentity.render.TileEntityFlagStackRenderer;
 
 /**
