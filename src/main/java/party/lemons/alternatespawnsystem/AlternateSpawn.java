@@ -4,7 +4,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import party.lemons.alternatespawnsystem.proxy.IProxy;
-
 /**
  * Created by Sam on 12/08/2018.
  */
