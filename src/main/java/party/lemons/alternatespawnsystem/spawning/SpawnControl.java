@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
+import party.lemons.alternatespawnsystem.config.AlternateSpawnConfig;
 
 /**
  * Created by Sam on 12/08/2018.
@@ -80,7 +81,7 @@ public class SpawnControl
 
 	public static boolean checkSunlight(World world, EntityMob e)
 	{
-		return world.getLightFor(EnumSkyBlock.SKY, e.getPosition()) - world.getSkylightSubtracted() <= 9;
+		return world.getLightFor(EnumSkyBlock.SKY, e.getPosition()) - world.getSkylightSubtracted() <= AlternateSpawnConfig.SUNLIGHT_LEVEL;
 	}
 
 	public static boolean checkColliding(EntityMob e)

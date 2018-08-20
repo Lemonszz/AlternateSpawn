@@ -10,6 +10,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import party.lemons.alternatespawnsystem.AlternateSpawn;
 import party.lemons.alternatespawnsystem.block.impl.BlockFlag;
 import party.lemons.alternatespawnsystem.block.impl.BlockFlagWall;
@@ -33,6 +34,7 @@ public class AlternateSpawnerModelRegistry
 		setInvisibleModel(AlternateSpawnBlocks.BASIC_FLAG_WALL, BlockFlagWall.FACING);
 	}
 
+	@SideOnly(Side.CLIENT) 	//TODO: Apparently was crashing for some people without annotation.
 	public static void registerFlagModel(Block block)
 	{
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block),

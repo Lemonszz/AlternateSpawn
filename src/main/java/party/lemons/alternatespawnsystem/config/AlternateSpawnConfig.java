@@ -48,6 +48,10 @@ public class AlternateSpawnConfig
 	@Config.Name("Allow Fake Players")
 	public static boolean ALLOW_FAKE_PLAYERS = false;
 
+	@Config.Name("Sunlight Spawn Level")
+	@Config.Comment("When sunlight reached values equal or below this level, mobs will spawn")
+	public static int SUNLIGHT_LEVEL = 9;
+
 	@SubscribeEvent
 	public static void onConfigReload(ConfigChangedEvent event)
 	{
@@ -55,6 +59,7 @@ public class AlternateSpawnConfig
 		{
 			ConfigManager.sync(event.getConfigID(), Config.Type.INSTANCE);
 
+			//TODO: automate this or something
 			FlagType.BASIC.setFlagSize(BASIC_FLAG_RANGE);
 			FlagType.GOLD.setFlagSize(GOLDEN_FLAG_RANGE);
 			FlagType.DIAMOND.setFlagSize(DIAMOND_FLAG_RANGE);
