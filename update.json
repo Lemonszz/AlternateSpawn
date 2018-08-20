@@ -1,12 +1,13 @@
 {
-  "homepage": "https://minecraft.curseforge.com/projects/simple-underground-biomes",
+  "homepage": "https://minecraft.curseforge.com/projects/ass",
   "promos": {
-    "1.12.2-latest": "1.0.1"
+    "1.12.2-latest": "1.0.2"
   },
   "1.12.2": {
     "0.0.1": "Exists",
     "0.0.3": "Various fixes",
     "1.0.0": "Full Release- Sounds, Advancements and Fixes - oh my",
-    "1.0.1": "Bug fixes"
+    "1.0.1": "Bug fixes",
+    "1.0.2": "Add config that allows mobs to spawn in different levels of sunlight, fix bug with configs not updating correctly"
   }
 }

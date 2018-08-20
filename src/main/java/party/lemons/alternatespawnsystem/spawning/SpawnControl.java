@@ -66,6 +66,9 @@ public class SpawnControl
 
 	public static boolean checkPathWeight(EntityMob e)
 	{
+		if(AlternateSpawnConfig.ALLOW_SUNLIGHT_SPAWNS)
+			return true;
+
 		return e.getBlockPathWeight(new BlockPos(e.posX, e.getEntityBoundingBox().minY, e.posZ)) >= 0.0F;
 	}
 
@@ -81,7 +84,10 @@ public class SpawnControl
 
 	public static boolean checkSunlight(World world, EntityMob e)
 	{
-		return world.getLightFor(EnumSkyBlock.SKY, e.getPosition()) - world.getSkylightSubtracted() <= AlternateSpawnConfig.SUNLIGHT_LEVEL;
+		if(AlternateSpawnConfig.ALLOW_SUNLIGHT_SPAWNS)
+			return true;
+
+		return world.getLightFor(EnumSkyBlock.SKY, e.getPosition()) - world.getSkylightSubtracted() <= 9;
 	}
 
 	public static boolean checkColliding(EntityMob e)

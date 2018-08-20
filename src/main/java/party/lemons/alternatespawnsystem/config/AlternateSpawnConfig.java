@@ -11,8 +11,8 @@ import party.lemons.alternatespawnsystem.spawning.FlagType;
 /**
  * Created by Sam on 12/08/2018.
  */
-@Config(modid = AlternateSpawn.MODID)
 @Mod.EventBusSubscriber(modid = AlternateSpawn.MODID)
+@Config(modid = AlternateSpawn.MODID)
 public class AlternateSpawnConfig
 {
 	@Config.Comment("Should new players see a message regarding the new mechanics?")
@@ -48,16 +48,15 @@ public class AlternateSpawnConfig
 	@Config.Name("Allow Fake Players")
 	public static boolean ALLOW_FAKE_PLAYERS = false;
 
-	@Config.Name("Sunlight Spawn Level")
-	@Config.Comment("When sunlight reached values equal or below this level, mobs will spawn")
-	public static int SUNLIGHT_LEVEL = 9;
+	@Config.Name("Allow Sunlight Spawning")
+	public static boolean ALLOW_SUNLIGHT_SPAWNS = false;
 
 	@SubscribeEvent
-	public static void onConfigReload(ConfigChangedEvent event)
+	public static void onConfigReload(ConfigChangedEvent.OnConfigChangedEvent event)
 	{
 		if(event.getModID().equals(AlternateSpawn.MODID))
 		{
-			ConfigManager.sync(event.getConfigID(), Config.Type.INSTANCE);
+			ConfigManager.sync(AlternateSpawn.MODID, Config.Type.INSTANCE);
 
 			//TODO: automate this or something
 			FlagType.BASIC.setFlagSize(BASIC_FLAG_RANGE);
